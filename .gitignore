@@ -33,3 +33,5 @@ config.ini
 
 # Ignore virtual environment files
 venv/
+
+src/tests/

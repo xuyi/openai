@@ -213,3 +213,42 @@ class ListFineTunesResponse(BaseModel):
 class ListFineTuneEventsResponse(BaseModel):
     data: List[FineTuneEvent]
     object: str = "list"
+
+class RerankRequest(BaseModel):
+    model: Optional[str] = None
+    query: Optional[str] = None
+    documents: Optional[list[str]] = None
+    top_n: Optional[int] = 3
+    rank_fields: Optional[list[str]] = None
+    return_documents: Optional[bool] = False
+    max_chunks_per_doc: Optional[int] = None
+
+class CohereRerankResultDocument(BaseModel):
+    text: Optional[str] = None
+class CohereRerankResult(BaseModel):
+    index: Optional[int]
+    relevance_score: Optional[float]
+    document: Optional[CohereRerankResultDocument]
+
+class CohereRerankMetaApiVersion(BaseModel):
+    version: Optional[str] = None
+    is_deprecated: Optional[bool] = False
+    is_experimental: Optional[bool] = False
+
+class CohereRerankMetaBilledUnits(BaseModel):
+    input_tokens: Optional[int]
+
+class CohereRerankMetaTokens(BaseModel):
+    input_tokens: Optional[int]
+    output_tokens: Optional[int]
+
+class CohereRerankMeta(BaseModel):
+    api_version: Optional[CohereRerankMetaApiVersion]
+    billed_units: Optional[CohereRerankMetaBilledUnits]
+    tokens: Optional[CohereRerankMetaTokens]
+    warnings: List[str] | None
+
+class RerankResponse(BaseModel):
+    id: Optional[str] = None
+    results: List[CohereRerankResult]
+    meta: Optional[CohereRerankMeta]

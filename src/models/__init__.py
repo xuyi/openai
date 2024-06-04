@@ -4,6 +4,7 @@ from fastapi import HTTPException
 from .audio import AudioModel
 from .embedding import EmbeddingModel
 from .image import ImageModel
+from .rerank import RerankModel
 from .llm import Baichuan, ChatGLM, InternLM, LLaMA, Qwen, Xverse
 
 
@@ -35,6 +36,8 @@ _MODELS = [
     EmbeddingModel("infloat/multilingual-e5-large"),
 
     ImageModel("stabilityai/stable-diffusion-xl-base-1.0"),
+
+    RerankModel("BAAI/bge-reranker-large"),
 ]
 _LOADED_MODELS = {}
 

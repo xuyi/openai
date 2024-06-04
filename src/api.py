@@ -17,6 +17,7 @@ from .routes.file import file_router
 from .routes.finetune import fine_tune_router
 from .routes.image import image_router
 from .routes.models import models_router
+from .routes.rerank import rerank_router
 
 from .utils.constants import DEFAULT_IMAGE_FOLDER
 from .utils.env import get_preload_models
@@ -47,7 +48,7 @@ api = FastAPI(lifespan=lifespan)
 
 add_cors_middleware(api)
 
-prefix = os.environ.get('API_PREFIX', "/api/v1")
+prefix = os.environ.get('API_PREFIX', "/v1")
 api.include_router(audio_router, prefix=prefix, tags=["Audio"])
 api.include_router(chat_router, prefix=prefix, tags=["Chat"])
 api.include_router(embedding_router, prefix=prefix, tags=["Embedding"])
@@ -55,6 +56,8 @@ api.include_router(file_router, prefix=prefix, tags=["File"])
 api.include_router(fine_tune_router, prefix=prefix, tags=["FineTune"])
 api.include_router(models_router, prefix=prefix, tags=["Model"])
 api.include_router(image_router, prefix=prefix, tags=["Image"])
+# rerank
+api.include_router(rerank_router, prefix=prefix, tags=["Rerank"])
 
 IMAGE_FOLDER = os.getenv("IMAGE_FOLDER", DEFAULT_IMAGE_FOLDER)
 if not os.path.exists(IMAGE_FOLDER):
