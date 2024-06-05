@@ -26,6 +26,11 @@ async def create_rerank(request: RerankRequest, model_name: str = None):
     if request.model is None:
         request.model = model_name
 
+    if request.model.startswith("rerank-multilingual-") or request.model.startswith(
+        "rerank-english-"
+    ):
+        request.model = DEFAULT_RERANK_MODEL
+
     rerank_model = get_model(request.model)
     raise_if_invalid_model(rerank_model, RerankModel)
 

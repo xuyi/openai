@@ -7,7 +7,7 @@ sentence-transformers
 sse-starlette
 tiktoken
 torch>=2.0
-transformers==4.35.0
+transformers
 transformers_stream_generator==0.0.4
 uvicorn
 sentencepiece
@@ -28,6 +28,16 @@ safetensors
 openai-whisper
 
 # # for funsar
-# modelscope
-# funasr
-# torchaudio
+modelscope
+funasr
+torchaudio
+
+FlagEmbedding
+aiofiles
+
+anyio
+langchain
+openai==0.27.8
+starlette
+wolframalpha
+peft<=0.6.2
